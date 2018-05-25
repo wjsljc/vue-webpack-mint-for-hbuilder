@@ -2,9 +2,9 @@
   <transition name="slide">
     <div class="picker-wrap">
       <mt-header class="header" title="Picker" :fixed="headerConf.fixed">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
+        <div slot="left">
+          <mt-button icon="back" @click="back">返回</mt-button>
+        </div>
       </mt-header>
       <div class="content" ref="content">
         <div class="row">
@@ -47,14 +47,13 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { Header, Button, Picker } from 'mint-ui';
+  import { Button, Picker } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
+    mixins: [headerMixin],
     data () {
       return {
-        headerConf: {
-          fixed: true
-        },
         pickerConf1: {
           slot: [
             {

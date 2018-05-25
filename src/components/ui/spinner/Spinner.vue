@@ -2,9 +2,9 @@
   <transition name="slide">
     <div class="spinner">
       <mt-header class="header" title="Spinner" :fixed="headerConf.fixed">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
+        <div slot="left">
+          <mt-button icon="back" @click="back">返回</mt-button>
+        </div>
       </mt-header>
       <div class="content">
         <mt-cell title="类型1">
@@ -37,17 +37,11 @@
 </template>
 
 <script>
-  import { Header, Spinner } from 'mint-ui';
+  import { Spinner } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
-    data () {
-      return {
-        headerConf: {
-          fixed: true
-        },
-      }
-    },
-    methods: {}
+    mixins: [headerMixin]
   }
 </script>
 

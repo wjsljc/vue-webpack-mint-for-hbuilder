@@ -2,9 +2,9 @@
   <transition name="slide">
     <div class="radio">
       <mt-header class="header" title="Radio" :fixed="headerConf.fixed">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
+        <div slot="left">
+          <mt-button icon="back" @click="back">返回</mt-button>
+        </div>
       </mt-header>
       <div class="content">
         <div class="row">
@@ -38,15 +38,13 @@
 </template>
 
 <script>
-  import { Header, Cell, Radio } from 'mint-ui';
+  import { Cell, Radio } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
-    name: "Toast",
+    mixins: [headerMixin],
     data () {
       return {
-        headerConf: {
-          fixed: true
-        },
         radioConf1: {
           value: ''
         },

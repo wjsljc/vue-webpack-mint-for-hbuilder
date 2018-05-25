@@ -2,9 +2,9 @@
   <transition name="slide">
     <div class="lazyLoad" id="lazyLoad">
       <mt-header class="header" title="LazyLoad" :fixed="headerConf.fixed">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
+        <div slot="left">
+          <mt-button icon="back" @click="back">返回</mt-button>
+        </div>
       </mt-header>
       <div class="content" ref="content">
         <ul class="page-lazyload-list">
@@ -18,14 +18,13 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { Header, Lazyload, Button } from 'mint-ui';
+  import { Lazyload, Button } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
+    mixins: [headerMixin],
     data () {
       return {
-        headerConf: {
-          fixed: true
-        },
         imgSrc: [
           'http://fuss10.elemecdn.com/b/18/0678e57cb1b226c04888e7f244c20jpeg.jpeg',
           'http://fuss10.elemecdn.com/3/1e/42634e29812e6594c98a89e922c60jpeg.jpeg',

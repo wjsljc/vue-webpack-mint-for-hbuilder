@@ -2,9 +2,9 @@
   <transition name="slide">
     <div class="actionSheet">
       <mt-header class="header" title="ActionSheet" :fixed="headerConf.fixed">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
+        <div slot="left">
+          <mt-button icon="back" @click="back">返回</mt-button>
+        </div>
       </mt-header>
       <div class="content">
         <mt-actionsheet
@@ -29,15 +29,13 @@
 </template>
 
 <script>
-  import { Header, Actionsheet, Button } from 'mint-ui';
+  import { Actionsheet, Button } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
-    name: "Indicator",
+    mixins: [headerMixin],
     data () {
       return {
-        headerConf: {
-          fixed: true
-        },
         actionsheetConf1: {
           flag: false,  // 显隐控制
           arr: [  // 内容数组

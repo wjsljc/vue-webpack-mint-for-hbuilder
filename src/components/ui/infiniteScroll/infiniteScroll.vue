@@ -2,9 +2,9 @@
   <transition name="slide">
     <div class="infiniteScroll">
       <mt-header class="header" title="InfiniteScroll" :fixed="headerConf.fixed">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
+        <div slot="left">
+          <mt-button icon="back" @click="back">返回</mt-button>
+        </div>
       </mt-header>
       <div class="content">
         <ul
@@ -22,15 +22,13 @@
 </template>
 
 <script>
-  import { Header, InfiniteScroll, Indicator, Button } from 'mint-ui';
+  import { InfiniteScroll, Indicator, Button } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
-    name: "Indicator",
+    mixins: [headerMixin],
     data () {
       return {
-        headerConf: {
-          fixed: true
-        },
         scrollConf: {
           flag: true,
           distance: 20, // 触发滚动的距离

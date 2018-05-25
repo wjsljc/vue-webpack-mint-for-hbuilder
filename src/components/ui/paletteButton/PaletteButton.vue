@@ -2,9 +2,9 @@
   <transition name="slide">
     <div class="palette-button">
       <mt-header class="header" title="PaletteButton" :fixed="headerConf.fixed">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
+        <div slot="left">
+          <mt-button icon="back" @click="back">返回</mt-button>
+        </div>
       </mt-header>
       <div class="content">
         <mt-palette-button content="+" @expand="main_log('expand')" @expanded="main_log('expanded')"
@@ -22,16 +22,11 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { Header, Button, PaletteButton } from 'mint-ui';
+  import { Button, PaletteButton } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
-    data () {
-      return {
-        headerConf: {
-          fixed: true
-        },
-      }
-    },
+    mixins: [headerMixin],
     methods: {
       main_log (val) {
         console.log('main_log', val);

@@ -2,9 +2,9 @@
   <transition name="slide">
     <div class="index-list">
       <mt-header class="header" title="IndexList" :fixed="headerConf.fixed">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
+        <div slot="left">
+          <mt-button icon="back" @click="back">返回</mt-button>
+        </div>
       </mt-header>
       <div class="content">
         <mt-index-list>
@@ -40,16 +40,11 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { Header, Button, IndexList, IndexSection } from 'mint-ui';
+  import { Button, IndexList, IndexSection } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
-    data () {
-      return {
-        headerConf: {
-          fixed: true
-        },
-      }
-    }
+    mixins: [headerMixin],
   }
 </script>
 

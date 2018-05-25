@@ -17,21 +17,13 @@
 </template>
 
 <script>
-  import { Header, Toast, Button } from 'mint-ui';
+  import { Toast, Button } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
     name: "Toast",
-    data () {
-      return {
-        headerConf: {
-          fixed: true
-        }
-      }
-    },
+    mixins: [headerMixin],
     methods: {
-      back () {
-        window.history.back();
-      },
       toast (target) {
         switch (target) {
           case 'top':

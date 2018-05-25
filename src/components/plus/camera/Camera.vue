@@ -25,15 +25,13 @@
 </template>
 
 <script>
-  import { Header, Toast, Button, Actionsheet, Indicator } from 'mint-ui';
+  import { Toast, Button, Actionsheet, Indicator } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
-    name: "Toast",
+    mixins: [headerMixin],
     data () {
       return {
-        headerConf: {
-          fixed: true
-        },
         actionsheetConf: {
           flag: false,  // 显隐控制
           arr: [  // 内容数组
@@ -55,13 +53,7 @@
         }
       }
     },
-    created () {
-
-    },
     methods: {
-      back () {
-        window.history.back();
-      },
       toast () {
         this.actionsheetConf.flag = true
       },

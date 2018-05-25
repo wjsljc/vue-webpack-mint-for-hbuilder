@@ -2,9 +2,9 @@
   <transition name="slide">
     <div class="switch">
       <mt-header class="header" title="Switch" :fixed="headerConf.fixed">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
+        <div slot="left">
+          <mt-button icon="back" @click="back">返回</mt-button>
+        </div>
       </mt-header>
       <div class="content">
         <div class="row">
@@ -21,15 +21,14 @@
 </template>
 
 <script>
-  import { Header, Switch, Toast } from 'mint-ui';
+  import { Switch, Toast } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
     name: "Toast",
+    mixins: [headerMixin],
     data () {
       return {
-        headerConf: {
-          fixed: true
-        },
         value1: true,
         value2: false
       }

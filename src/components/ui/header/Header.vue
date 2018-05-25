@@ -1,27 +1,25 @@
 <template>
   <transition name="slide">
     <div class="header">
-      <mt-header class="header" title="固定在顶部" :fixed="headerConf1.fixed">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
+      <mt-header title="固定在顶部" :fixed="headerConf.fixed">
+        <div slot="left">
+          <mt-button icon="back" @click="back">返回</mt-button>
+        </div>
       </mt-header>
       <div class="content">
         <div class="title">Header</div>
         <div class="row">
           <mt-header title="标题过长会隐藏后面的内容啊哈哈哈哈">
-            <router-link to="/" slot="left">
+            <div slot="left">
               <mt-button icon="back">返回</mt-button>
-            </router-link>
+            </div>
             <mt-button icon="more" slot="right" @click="handleMenu"></mt-button>
           </mt-header>
         </div>
         <div class="row">
           <mt-header title="多个按钮">
             <div slot="left" class="back">
-              <router-link to="/">
-                <mt-button icon="back">返回</mt-button>
-              </router-link>
+              <mt-button icon="back">返回</mt-button>
               <mt-button @click="handleClose">按钮左</mt-button>
             </div>
             <mt-button slot="right" @click="handleClose">按钮右</mt-button>
@@ -40,14 +38,13 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { Header, Actionsheet } from 'mint-ui';
+  import { Actionsheet } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
+    mixins: [headerMixin],
     data () {
       return {
-        headerConf1: {
-          fixed: true
-        },
         actionsheetConf1: {
           flag: false,  // 显隐控制
           arr: [  // 内容数组

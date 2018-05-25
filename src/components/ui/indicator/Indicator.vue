@@ -2,9 +2,9 @@
   <transition name="slide">
     <div class="indicator">
       <mt-header class="header" title="Indicator" :fixed="headerConf.fixed">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
+        <div slot="left">
+          <mt-button icon="back" @click="back">返回</mt-button>
+        </div>
       </mt-header>
       <div class="content">
         <mt-button type="default" @click="toast('style-1')">加载样式1</mt-button>
@@ -18,10 +18,11 @@
 </template>
 
 <script>
-  import { Header, Indicator, Button } from 'mint-ui';
+  import { Indicator, Button } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
-    name: "Indicator",
+    mixins: [headerMixin],
     data () {
       return {
         headerConf: {

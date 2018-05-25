@@ -2,15 +2,13 @@
   <transition name="slide">
     <div class="geolocation">
       <mt-header class="header" title="Geolocation" :fixed="headerConf.fixed">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
+        <div slot="left">
+          <mt-button icon="back" @click="back">返回</mt-button>
+        </div>
       </mt-header>
       <div class="content">
         <div class="row-block">
           <mt-button type="default" @click="getLocation">点击获取当前地理信息</mt-button>
-          <mt-button type="primary">primary</mt-button>
-          <mt-button type="danger">danger</mt-button>
         </div>
         <div class="row" v-show="locationInfo.flag">
           <p>{{locationInfo.address}}</p>
@@ -21,15 +19,13 @@
 </template>
 
 <script>
-  import { Header, Button, Indicator } from 'mint-ui';
+  import { Button, Indicator } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
-    name: "Indicator",
+    mixins: [headerMixin],
     data () {
       return {
-        headerConf: {
-          fixed: true
-        },
         locationInfo: {
           flag: false,
           address: ''

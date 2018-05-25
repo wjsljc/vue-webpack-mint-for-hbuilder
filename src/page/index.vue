@@ -7,56 +7,39 @@
       <mt-tab-item id="PLUS">
         PLUS
       </mt-tab-item>
-      <mt-tab-item id="DEMO">
-        DEMO
+      <mt-tab-item id="INTRODUCE">
+        INTRODUCE
       </mt-tab-item>
     </mt-tabbar>
     <mt-tab-container v-model="tabConf.activeTab" :swipeable="tabConf.isSwiper">
       <mt-tab-container-item id="UI">
-        <mt-cell title="Toast" label="Toast弹出提示" is-link to="/ui/toast"></mt-cell>
-        <mt-cell title="Indicator" label="Indicator加载状态" is-link to="/ui/indicator"></mt-cell>
-        <mt-cell title="Loadmore" label="Loadmore上拉加载下拉刷新" is-link to="/ui/loadmore"></mt-cell>
-        <mt-cell title="InfiniteScroll" label="InfiniteScroll无限滚动指令" is-link to="/ui/infinite-scroll"></mt-cell>
-        <mt-cell title="MessageBox" label="MessageBox消息提示框" is-link to="/ui/message-box"></mt-cell>
-        <mt-cell title="ActionSheet" label="ActionSheet弹出操作列表" is-link to="/ui/action-sheet"></mt-cell>
-        <mt-cell title="Popup" label="Popup弹出框" is-link to="/ui/popup"></mt-cell>
-        <mt-cell title="Swipe" label="Swipe轮播" is-link to="/ui/swipe"></mt-cell>
-        <mt-cell title="Lazyload" label="Lazyload图片懒加载" is-link to="/ui/lazyload"></mt-cell>
-        <mt-cell title="Range" label="Range滑块,支持自定义步长、区间等" is-link to="/ui/range"></mt-cell>
-        <mt-cell title="Progress" label="Progress进度条" is-link to="/ui/progress"></mt-cell>
-        <mt-cell title="Picker" label="Picker选择器,支持多slot联动" is-link to="/ui/picker"></mt-cell>
-        <mt-cell title="DatetimePicker" label="DatetimePicker日期时间选择器,支持自定义类型" is-link
-                 to="/ui/datetime-picker"></mt-cell>
-        <mt-cell title="IndexList" label="IndexList索引列表,可由右侧索引导航快速定位到相应的内容" is-link to="/ui/index-list"></mt-cell>
-        <mt-cell title="PaletteButton" label="PaletteButton调色板按钮" is-link to="/ui/palette-button"></mt-cell>
-        <mt-cell title="Header" label="Header顶部导航栏,支持显示按钮、自定义文字和固定在顶部" is-link to="/ui/header"></mt-cell>
-        <mt-cell title="Button" label="Button按钮,提供几种基础样式和尺寸,可自定义图标" is-link to="/ui/button"></mt-cell>
-        <mt-cell title="Cell" label="Cell单元格,可用作展示列表信息、链接或者表单等" is-link to="/ui/cell"></mt-cell>
-        <mt-cell title="Spinner" label="Spinner加载动画,可指定显示类型、尺寸和颜色" is-link to="/ui/spinner"></mt-cell>
-        <mt-cell title="Search" label="Search搜索框，可显示搜索结果列表" is-link to="/ui/search"></mt-cell>
-        <mt-cell title="Switch" label="Switch开关" is-link to="/ui/switch"></mt-cell>
-        <mt-cell title="Checklist" label="Checklist,复选框列表,依赖cell组件" is-link to="/ui/checklist"></mt-cell>
-        <mt-cell title="Radio" label="Radio,单选框列表,依赖cell组件" is-link to="/ui/radio"></mt-cell>
-        <mt-cell title="Field" label="Field表单编辑器" is-link to="/ui/field"></mt-cell>
-        <mt-cell title="Badge" label="Badge徽章，可指定颜色和尺寸" is-link to="/ui/badge"></mt-cell>
+        <index-ui></index-ui>
       </mt-tab-container-item>
       <mt-tab-container-item id="PLUS">
-        <mt-cell title="Camera" label="Camera,相册与拍照" is-link to="/plus/camera"></mt-cell>
-        <mt-cell title="Geolocation" label="Geolocation设备位置信息" is-link to="/plus/geolocation"></mt-cell>
-        <mt-cell title="Accelerometer" label="Accelerometer模块管理设备加速度传感器" is-link to="/plus/accelerometer"></mt-cell>
+        <index-plus></index-plus>
       </mt-tab-container-item>
-      <mt-tab-container-item id="DEMO">
-        <mt-cell v-for="n in 7" title="tab-container 3"></mt-cell>
+      <mt-tab-container-item id="INTRODUCE">
+        <index-mine></index-mine>
       </mt-tab-container-item>
     </mt-tab-container>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import indexUi from 'page/indexTab/indexUi'
+  import indexPlus from 'page/indexTab/indexPlus'
+  import indexMine from 'page/indexTab/indexMine'
   import { plusReady } from 'assets/js/plusReady'
-  import { Tabbar, TabItem } from 'mint-ui';
+  import { Tabbar, TabItem, Toast, Cell } from 'mint-ui'
+  import { MyLocalStorage, checkADFlag, checkLoginFlag } from 'assets/js/utils'
+  import { LOGIN_FLAG, AD_FLAG, INDEX_ACTIVETAB } from 'assets/js/storageConst'
 
   export default {
+    components: {
+      indexUi,
+      indexPlus,
+      indexMine
+    },
     data () {
       return {
         tabConf: {
@@ -72,31 +55,67 @@
       this.setLocalStorage()  // 储存本地存储
     },
     activated () {
-      console.log("activated")
-      let activeTab = localStorage.getItem('index_activeTab')
+      console.log("activated1")
+      let activeTab = localStorage.getItem(INDEX_ACTIVETAB)
       this.tabConf.activeTab = activeTab
+      console.log(this.tabConf.activeTab)
     },
     methods: {
       plusReady () {
         let self = this
         plus.key.addEventListener('backbutton', function () {
           self.$router.back()
-        }, false);
-
+        }, false)
+        document.addEventListener("resume", self.resumeCallback, false); // 运行环境从后台切换到前台事件
+        document.addEventListener("pause", self.pauseCallback, false);
       },
       setLocalStorage () {
-        localStorage.setItem('index_activeTab', this.tabConf.activeTab)
+        localStorage.setItem(INDEX_ACTIVETAB, this.tabConf.activeTab)
+      },
+      resumeCallback () {
+        Toast({
+          message: '欢迎回来',
+          position: 'bottom',
+          duration: 3000
+        })
+        MyLocalStorage.Cache.set(LOGIN_FLAG, true, 999999) // 切换回来登陆保持时长无限
+        let AD_flag = checkADFlag()
+        if (AD_flag) {
+          this.adShow()
+        }
+        let login_flag = checkLoginFlag()
+        if (login_flag) {
+          this.login()
+        }
+      },
+      pauseCallback () {
+        setTimeout(() => {
+          MyLocalStorage.Cache.set(LOGIN_FLAG, true, 600) // 切换至后台登陆保持10分钟
+        }, 1000)
+      },
+      adShow () {
+        setTimeout(() => {
+          this.$router.push({
+            name: 'advertisement'
+          })
+        }, 1000)
+      },
+      login () {
+        this.$router.push({
+          name: 'login'
+        })
       }
     },
     watch: {
       'tabConf.activeTab' (newVal, oldVal) {
-        localStorage.setItem('index_activeTab', this.tabConf.activeTab)
+        localStorage.setItem(INDEX_ACTIVETAB, this.tabConf.activeTab)
       }
     }
   }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+  @import "~assets/css/variable.styl"
   .index {
     position absolute
     z-index 0
@@ -112,13 +131,6 @@
     }
     .mint-tab-container {
       padding-bottom 50px
-      .mint-cell-wrapper {
-        padding 5px 0 5px 15px
-      }
-      .mint-cell {
-        padding 5px 0 5px 10px
-        border-bottom 1px solid #d9d9d9
-      }
     }
   }
 </style>

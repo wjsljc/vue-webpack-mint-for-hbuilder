@@ -2,9 +2,9 @@
   <transition name="slide">
     <div class="cell">
       <mt-header class="header" title="Cell" :fixed="headerConf.fixed">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
+        <div slot="left">
+          <mt-button icon="back" @click="back">返回</mt-button>
+        </div>
       </mt-header>
       <div class="content">
         <mt-cell title="标题文字"></mt-cell>
@@ -52,14 +52,13 @@
 </template>
 
 <script>
-  import { Header, Cell, CellSwipe, Button, Toast, MessageBox } from 'mint-ui';
+  import { Cell, CellSwipe, Button, Toast, MessageBox } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
+    mixins: [headerMixin],
     data () {
       return {
-        headerConf: {
-          fixed: true
-        },
         cellSwipeInfo: {
           info: {
             title: '左滑删除',

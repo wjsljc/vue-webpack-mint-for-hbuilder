@@ -2,9 +2,9 @@
   <transition name="slide">
     <div class="checklist">
       <mt-header class="header" title="Checklist" :fixed="headerConf.fixed">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
+        <div slot="left">
+          <mt-button icon="back" @click="back">返回</mt-button>
+        </div>
       </mt-header>
       <div class="content">
         <div class="row">
@@ -47,15 +47,13 @@
 </template>
 
 <script>
-  import { Header, Cell, Checklist } from 'mint-ui';
+  import { Cell, Checklist } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
-    name: "Toast",
+    mixins: [headerMixin],
     data () {
       return {
-        headerConf: {
-          fixed: true
-        },
         checkBoxConf1: {
           value: []
         },

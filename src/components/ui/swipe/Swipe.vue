@@ -2,9 +2,9 @@
   <transition name="slide">
     <div class="swipe-wrap">
       <mt-header class="header" title="Swipe" :fixed="headerConf.fixed">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
+        <div slot="left">
+          <mt-button icon="back" @click="back">返回</mt-button>
+        </div>
       </mt-header>
       <div class="content">
         <mt-swipe :auto="swipeConf1.auto"
@@ -27,14 +27,13 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { Header, Swipe, SwipeItem, Button } from 'mint-ui';
+  import { Swipe, SwipeItem, Button } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
+    mixins: [headerMixin],
     data () {
       return {
-        headerConf: {
-          fixed: true
-        },
         swipeConf1: {
           flag: false,  // 显隐标识
           auto: 0, // 自动播放时间

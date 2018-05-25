@@ -7,12 +7,14 @@
 </template>
 
 <script>
+
   export default {
     name: 'App'
   }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  @import "~assets/css/variable.styl"
   html, body {
     width 100%
     height 100%

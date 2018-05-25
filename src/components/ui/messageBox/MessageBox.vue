@@ -2,9 +2,9 @@
   <transition name="slide">
     <div class="message-box">
       <mt-header class="header" title="MessageBox" :fixed="headerConf.fixed">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
+        <div slot="left">
+          <mt-button icon="back" @click="back">返回</mt-button>
+        </div>
       </mt-header>
       <div class="content">
         <mt-button type="default" @click="toast('alert')">alert</mt-button>
@@ -17,15 +17,13 @@
 </template>
 
 <script>
-  import { Header, MessageBox, Button } from 'mint-ui';
+  import { MessageBox, Button } from 'mint-ui'
+  import { headerMixin } from 'assets/js/mixins'
 
   export default {
-    name: "Indicator",
+    mixins: [headerMixin],
     data () {
       return {
-        headerConf: {
-          fixed: true
-        },
         messageConf: {
           title: '自定义的弹出框',
           message: '自定义的弹出框内容',
