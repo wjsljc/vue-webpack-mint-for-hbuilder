@@ -20,7 +20,8 @@ $ npm run dev
 ```
 $ npm run dev
 ```
-在 HBuilder 中设置应用入口地址为 ``http://localhost:8080/index.html``
+在 HBuilder 中设置应用入口地址为 ``本地服务器:端口号/index.html``
+如 192.168.11.102:8080/index.html
 > 请确保手机与本地服务在同一网段，否则无法访问本机的服务。
 
 ### 编译后真机同步调试
