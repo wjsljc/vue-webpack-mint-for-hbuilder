@@ -170,6 +170,11 @@ export const plusRouters = [
     path: '/plus/resumeCallback',
     name: 'resumeCallback',
     component: () => import('components/plus/resumeCallback/ResumeCallback')
+  },
+  {
+    path: '/plus/payment',
+    name: 'payment',
+    component: () => import('components/plus/payment/Payment')
   }
 ]
 

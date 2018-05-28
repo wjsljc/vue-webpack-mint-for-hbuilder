@@ -14,6 +14,9 @@
           v-model="actionsheetConf.flag"
         >
         </mt-actionsheet>
+        <div class="row">
+          <h3>拍照需要build或者打成包之后方可看见效果</h3>
+        </div>
         <mt-button type="default" @click="toast('top')">选取照片</mt-button>
         <!--<mt-cell title="jump" label="Camera,相册与拍照" is-link to="/plus/test"></mt-cell>-->
         <div class="photo" id="photo" v-show="photoInfo.flag">
@@ -151,6 +154,11 @@
     background-color $color-background
     .content {
       padding-top 50px
+      .row {
+        height 50px
+        line-height 50px
+        text-align center
+      }
       button.mint-button--default {
         display block
         width 60%

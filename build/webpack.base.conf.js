@@ -29,6 +29,7 @@ module.exports = {
       'page': resolve('src/page'),
       'assets': resolve('src/assets'),
       'components': resolve('src/components'),
+      'api': resolve('src/api'),
       'ROUTER': resolve('src/router')
     }
   },
