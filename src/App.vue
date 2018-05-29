@@ -16,6 +16,7 @@
 <style lang="stylus" rel="stylesheet/stylus">
   @import "~assets/css/variable.styl"
   html, body {
+    overflow-x hidden
     width 100%
     height 100%
     padding 0
