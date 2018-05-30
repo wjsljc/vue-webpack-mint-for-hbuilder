@@ -35,8 +35,8 @@
         <div class="row">
           <mt-button class="pickerBtn" type="default" @click="pickerBtn">点击弹出</mt-button>
         </div>
-        <div class="from-bottom" ref="bottomWrap">
-          <div v-show="pickerConf6.flag">
+        <div class="from-bottom" ref="bottomWrap" v-show="pickerConf6.flag">
+          <div>
             <mt-button class="close-pop" type="danger" @click="closePop">关闭</mt-button>
             <mt-picker :slots="pickerConf6.slot" @change="linkage"></mt-picker>
           </div>
@@ -49,6 +49,9 @@
 <script type="text/ecmascript-6">
   import { Button, Picker } from 'mint-ui'
   import { headerMixin } from 'assets/js/mixins'
+  import { prefixStyle } from 'assets/js/utils'
+
+  const transform = prefixStyle('transform')
 
   export default {
     mixins: [headerMixin],
@@ -202,7 +205,7 @@
       let currentPositon = 72
       let count = 0
       this.pickerConf5.timer = setInterval(() => {
-        this.$refs.dynamic.$children[0].$refs.wrapper.style.transform = `translate(0px, ${currentPositon}px) translateZ(0px)`
+        this.$refs.dynamic.$children[0].$refs.wrapper.style[transform] = `translate(0px, ${currentPositon}px) translateZ(0px)`
         currentPositon -= jumpLen
         count++
         if (count === dynamicLen) {
@@ -216,13 +219,9 @@
       this.pickerConf5.timer = null
     },
     methods: {
-      onValuesChange (picker, values) {
-        console.log(picker)
-        console.log(values)
+      onValuesChange (picker, values) { // 这里log与vconsole冲突会导致内存溢出，这里看log需要先移除vconsole
       },
-      linkage (picker, values) {
-        console.log(picker)
-        console.log(values)
+      linkage (picker, values) { // 这里log与vconsole冲突会导致内存溢出，这里看log需要先移除vconsole
         switch (values[0]) {
           case "四川省":
             picker.setSlotValues(1, ['成都', '雅安'])
@@ -245,13 +244,16 @@
         this.pickerConf4.value = values.join('')
       },
       pickerBtn () {
-        console.log(this.$refs.bottomWrap.style)
         this.pickerConf6.flag = true
-        this.$refs.bottomWrap.style.transform = `translate(0px, -200px) translateZ(0px)`
+        setTimeout(() => {
+          this.$refs.bottomWrap.style[transform] = `translate(0px, -200px) translateZ(0px)`
+        }, 500)
       },
       closePop () {
-        this.pickerConf6.flag = false
-        this.$refs.bottomWrap.style.transform = `translate(0px, 0px) translateZ(0px)`
+        setTimeout(() => {
+          this.pickerConf6.flag = false
+        }, 500)
+        this.$refs.bottomWrap.style[transform] = `translate(0px, 0px) translateZ(0px)`
       }
     }
   }
@@ -303,7 +305,7 @@
         }
       }
       .from-bottom {
-        z-index 999
+        z-index 999999
         position fixed
         top 100%
         left 0

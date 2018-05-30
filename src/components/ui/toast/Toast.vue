@@ -7,10 +7,12 @@
         </div>
       </mt-header>
       <div class="content">
-        <mt-button type="default" @click="toast('top')">上方弹出Toast</mt-button>
-        <mt-button type="default" @click="toast('middle')">中间弹出Toast</mt-button>
-        <mt-button type="default" @click="toast('bottom')">下方弹出Toast</mt-button>
-        <mt-button type="default" @click="toast('icon')">带图标的弹出框</mt-button>
+        <vue-scrollbar class="my-scrollbar" v-bind:speed=100>
+          <mt-button type="default" @click="toast('top')">上方弹出Toast</mt-button>
+          <mt-button type="default" @click="toast('middle')">中间弹出Toast</mt-button>
+          <mt-button type="default" @click="toast('bottom')">下方弹出Toast</mt-button>
+          <mt-button type="default" @click="toast('icon')">带图标的弹出框</mt-button>
+        </vue-scrollbar>
       </div>
     </div>
   </transition>
@@ -62,6 +64,7 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~assets/css/variable.styl"
   @import "~assets/css/transition.styl"
+
   .toast {
     position absolute
     z-index 100
@@ -72,6 +75,10 @@
     background-color $color-background
     .content {
       padding-top 50px
+      .my-scrollbar {
+        width 100%
+        height 100%
+      }
       button.mint-button--default {
         display block
         width 60%
