@@ -1,6 +1,6 @@
 # vue-webpack-hbuilder
 
-> 此项目设计的最初目的是为了解决使用 vue+webpack 自动化构建并实时同步手机热更新调试而诞生。截止目前，DCloud 官方并提供一套完整的 vue+webpack+hbuilder 实时开发调试的文章，只是零零散散有人去构建一些自己的项目，并不能很好地教会或者引导大量开发者使用该开发模式进行开发。本项目以构建流程为主，适量 demo 为辅，印证了 vue+webpack+hbuilder 实时调试以及打包的可行性，为开发者提供多开发种选择。
+> 此项目设计的最初目的是为了解决使用 vue+webpack 自动化构建并实时同步手机热更新调试而诞生。截止目前，DCloud 官方并提供一套完整的 vue+webpack+hbuilder 实时开发调试的文章，只是零零散散有人去构建一些自己的项目，并不能很好地教会或者引导大量开发者使用该开发模式进行开发。本项目以构建流程为主，适量 demo 为辅，印证了 vue+webpack+hbuilder 实时调试以及打包的可行性，为开发者提供多开发种选择。本应用为单页面开发，多页面请参照我的另一个APP：[vue-webpack-cube-for-hbuilder](https://github.com/wjsljc/vue-webpack-cube-for-hbuilder "vue-webpack-cube-for-hbuilder")
 
 ## 使用步骤
 ###下载代码
@@ -31,6 +31,14 @@ $ npm run build
 - 把 dist 目录下的文件复制到 HBuilder 项目下
 - 设置起始页为 index.html
 - 真机运行调试
+
+## 主要架构以及特色
+> vue + webpack + mint-ui + hbuilder
+- UI模块和PLUS模块独立展示，参考使用各取所需
+- UI是对mint-ui官网demo的仿造与实际实践，100%迁移以及额外的扩展，更多的自定义demo展示与结合APP的运用，更加符合一款APP的基础需求
+- PLUS对5+SDK的的集成运用，对APP常用的几个功能进行了展示，验证5+在vue中的使用
+- 索引页面、登陆与登出，登陆超时、广告弹出等等功能的基础实现原理，使得APP更加“高仿”
+- 对公共函数的封装、组件的封装、对公用代码mixin的使用等也体现了作者对APP的态度
 
 ## 赞助
 如果该项目给您带来了工作上的参考或者启发，亦或者期待更多其他项目的诞生和该项目的继续维护，支持作者原创扫一扫或点击识别下方的二维码，为作者打赏1.0元吧！
