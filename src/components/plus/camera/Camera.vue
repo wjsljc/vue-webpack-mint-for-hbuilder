@@ -1,7 +1,7 @@
 <template>
   <transition name="slide">
     <div class="camera">
-      <mt-header class="header" title="amera" :fixed="headerConf.fixed">
+      <mt-header class="header" title="camera" :fixed="headerConf.fixed">
         <div slot="left">
           <mt-button icon="back" @click="back">返回</mt-button>
         </div>

@@ -78,7 +78,6 @@
           position: 'bottom',
           duration: 3000
         })
-        MyLocalStorage.Cache.set(LOGIN_FLAG, true, 999999) // 切换回来登陆保持时长无限
         let AD_flag = checkADFlag()
         if (AD_flag) {
           this.adShow()
@@ -86,6 +85,8 @@
         let login_flag = checkLoginFlag()
         if (login_flag) {
           this.login()
+        } else {
+          MyLocalStorage.Cache.set(LOGIN_FLAG, true, 999999) // 切换回来登陆保持时长无限
         }
       },
       pauseCallback () {

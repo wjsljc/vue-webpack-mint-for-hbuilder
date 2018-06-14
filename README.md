@@ -1,6 +1,8 @@
 # vue-webpack-hbuilder
 
-> 此项目设计的最初目的是为了解决使用 vue+webpack 自动化构建并实时同步手机热更新调试而诞生。截止目前，DCloud 官方并提供一套完整的 vue+webpack+hbuilder 实时开发调试的文章，只是零零散散有人去构建一些自己的项目，并不能很好地教会或者引导大量开发者使用该开发模式进行开发。本项目以构建流程为主，适量 demo 为辅，印证了 vue+webpack+hbuilder 实时调试以及打包的可行性，为开发者提供多开发种选择。本应用为单页面开发，多页面请参照我的另一个APP：[vue-webpack-cube-for-hbuilder](https://github.com/wjsljc/vue-webpack-cube-for-hbuilder "vue-webpack-cube-for-hbuilder")
+> 此项目设计的最初目的是为了解决使用 vue+webpack 自动化构建并实时同步手机热更新调试而诞生。截止目前，DCloud 官方并提供一套完整的 vue+webpack+hbuilder 实时开发调试的文章，只是零零散散有人去构建一些自己的项目，并不能很好地教会或者引导大量开发者使用该开发模式进行开发。本项目以构建流程为主，适量 demo 为辅，印证了 vue+webpack+hbuilder 实时调试以及打包的可行性，为开发者提供多开发种选择。</br>
+本APP与其他APP不同，该APP并不是功能性APP，所以几乎没有展示内容的业务逻辑，你可以把它理解为DCLOUD的muiAPP，做UIdemo的展示，并且验证PLUS在vue+webpack构建方式下的各类使用情况。更多的AQ可以在APP中的‘INTRODUCE’中得到解答。</br>
+本应用为单页面开发，多页面请参照我的另一个APP：[vue-webpack-cube-for-hbuilder](https://github.com/wjsljc/vue-webpack-cube-for-hbuilder "vue-webpack-cube-for-hbuilder")
 
 ## 使用步骤
 ###下载代码

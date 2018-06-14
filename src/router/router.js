@@ -175,6 +175,17 @@ export const plusRouters = [
     path: '/plus/payment',
     name: 'payment',
     component: () => import('components/plus/payment/Payment')
+  },
+  {
+    path: '/plus/router',
+    name: 'router',
+    component: () => import('components/plus/router/Router'),
+    children: [
+      {
+        path: 'routerChildren:id',
+        component: () => import('components/plus/router/RouterChildren')
+      },
+    ]
   }
 ]
 
